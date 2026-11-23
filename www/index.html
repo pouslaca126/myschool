@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="MY SCHOOL">
+<meta name="theme-color" content="#f4f2fc">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<title>MY SCHOOL</title>
+<style>
+:root{--bg:#eef0fb;--card:rgba(255,255,255,.72);--sh:#fff;--tx:#1d1b3a;--mut:#7b7a9c;--line:rgba(120,110,200,.16);--a:#9b7cff;--a2:#4f8cff;--tab:rgba(255,255,255,.75);--g1:rgba(155,124,255,.25);--g2:rgba(79,140,255,.22)}
+[data-theme=dark]{--bg:#070b1f;--card:rgba(255,255,255,.07);--sh:#10153a;--tx:#eef0ff;--mut:#9aa0c8;--line:rgba(255,255,255,.1);--tab:rgba(10,14,40,.72);--g1:rgba(124,92,255,.34);--g2:rgba(37,99,235,.3)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:radial-gradient(circle at 10% -10%,var(--g1),transparent 55%),radial-gradient(circle at 100% 18%,var(--g2),transparent 50%),var(--bg);background-attachment:fixed;color:var(--tx);font:16px/1.4 -apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,sans-serif;overscroll-behavior:none;transition:background .3s}
+button{font-family:inherit;touch-action:manipulation;cursor:pointer}
+#app{max-width:520px;margin:0 auto;min-height:100dvh;padding:calc(env(safe-area-inset-top) + 14px) 16px calc(96px + env(safe-area-inset-bottom))}
+.view{animation:in .35s ease}
+h1{font-size:30px;margin:0;letter-spacing:-.5px}h2{font-size:22px;margin:0}h3{margin:0;font-size:17px}
+small{color:var(--mut);display:block;font-size:13px}
+.hd{justify-content:space-between;margin:6px 0 14px}
+.row{display:flex;align-items:center;gap:12px}
+.fl{flex:1;min-width:0}
+.card{background:var(--card);border:1px solid var(--line);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);border-radius:22px;padding:14px;margin:0 0 10px;box-shadow:0 8px 28px rgba(10,10,50,.12)}
+.it{cursor:pointer;transition:transform .15s}.it:active{transform:scale(.98)}
+.st{width:6px;height:38px;border-radius:4px;flex:none}
+.hero{background:linear-gradient(135deg,var(--a),var(--a2));color:#fff;border-radius:26px;padding:20px;margin-bottom:6px;box-shadow:0 10px 30px rgba(139,124,246,.3)}
+.hero small{color:#fff;opacity:.85}.sm{text-transform:capitalize;opacity:.9;font-size:14px;margin:0 0 4px}
+.cnt{text-align:center;font-size:15px}.cnt b{font-size:38px;display:block;line-height:1}
+.prog{height:8px;background:rgba(255,255,255,.35);border-radius:6px;margin-top:14px;overflow:hidden}
+.prog i{display:block;height:100%;background:#fff;border-radius:6px;animation:grow .9s}
+.sec{display:flex;justify-content:space-between;align-items:center;margin:18px 2px 8px}
+.td{color:var(--a)}
+.lk{background:none;border:0;color:var(--a);font-size:15px;display:flex;align-items:center;padding:4px 0}
+.lk svg{width:18px;height:18px}
+.plus{width:40px;height:40px;border-radius:50%;border:0;background:linear-gradient(135deg,var(--a),var(--a2));color:#fff;display:grid;place-items:center;flex:none;box-shadow:0 4px 12px rgba(139,124,246,.35)}
+.plus svg{width:22px;height:22px}
+.pill{font-size:12px;font-weight:600;padding:4px 10px;border-radius:20px;background:var(--line);white-space:nowrap}
+.ck{width:30px;height:30px;border-radius:50%;border:2px solid var(--line);background:none;color:transparent;display:grid;place-items:center;flex:none;padding:0;transition:.2s}
+.ck svg{width:16px;height:16px;stroke-width:3}.ck.on{background:var(--a);border-color:var(--a);color:#fff}
+.dn{text-decoration:line-through;opacity:.5}
+.bl{display:grid;grid-template-columns:92px 1fr 42px;gap:8px;align-items:center;margin:12px 0;font-size:14px}
+.bl b{text-align:right}.bar{height:12px;background:var(--line);border-radius:8px;overflow:hidden}
+.bar i{display:block;height:100%;border-radius:8px;animation:grow .9s}
+.big{font-size:52px;font-weight:700;line-height:1.1;background:linear-gradient(135deg,var(--a),var(--a2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.big span{font-size:18px}.ctr{text-align:center}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 0}
+.chip{border:0;border-radius:20px;padding:8px 14px;background:var(--line);color:var(--tx);font-size:14px}.chip.on{background:var(--a);color:#fff}
+.emp{text-align:center;color:var(--mut);padding:26px 10px}
+.sw{display:flex;gap:12px;margin-top:8px}.swb{width:38px;height:38px;border-radius:50%;border:3px solid transparent;box-shadow:inset 0 0 0 2px var(--card)}.swb.on{border-color:var(--tx)}
+.tgl{width:52px;height:30px;border-radius:20px;border:0;background:var(--line);padding:3px;transition:.25s}
+.tgl i{display:block;width:24px;height:24px;border-radius:50%;background:#fff;transition:.25s}.tgl.on{background:var(--a)}.tgl.on i{transform:translateX(22px)}
+.ico{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:var(--line);color:var(--a)}
+svg.i{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.tabbar{position:fixed;left:0;right:0;bottom:0;display:flex;justify-content:center;padding:8px 8px calc(8px + env(safe-area-inset-bottom));background:var(--tab);-webkit-backdrop-filter:blur(22px);backdrop-filter:blur(22px);border-top:1px solid var(--line)}
+.tabbar div{display:flex;width:100%;max-width:520px}
+.tabbar button{background:none;border:0;color:var(--mut);display:flex;flex-direction:column;align-items:center;font-size:10px;gap:2px;flex:1;padding:4px;transition:color .2s}
+.tabbar button.on{color:var(--a)}.tabbar button.on svg{transform:scale(1.12)}.tabbar svg{transition:transform .2s}
+.btn{border:0;border-radius:14px;padding:13px 16px;font-size:16px;font-weight:600;background:linear-gradient(135deg,var(--a),var(--a2));color:#fff}
+.btn.r{background:rgba(229,72,77,.16);color:#ff6b78}
+label{display:block;font-size:13px;color:var(--mut);margin-top:12px}
+input,select,textarea{display:block;width:100%;margin-top:4px;font:16px -apple-system,system-ui,sans-serif;padding:12px;min-height:46px;border-radius:12px;border:1px solid var(--line);background:rgba(128,128,170,.14);color:var(--tx)}
+input[type=color]{padding:4px}
+.ov{position:fixed;inset:0;background:rgba(20,15,40,.4);display:flex;align-items:flex-end;z-index:9;animation:fd .2s}
+.sh{background:var(--sh);border:1px solid var(--line);width:100%;max-width:520px;margin:0 auto;border-radius:26px 26px 0 0;padding:18px 16px calc(18px + env(safe-area-inset-bottom));max-height:90dvh;overflow:auto;animation:up .32s cubic-bezier(.2,.8,.2,1)}
+@keyframes up{from{transform:translateY(100%)}}@keyframes fd{from{opacity:0}}@keyframes grow{from{width:0}}@keyframes in{from{opacity:0;transform:translateY(8px)}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+[hidden]{display:none!important}button:active{transform:scale(.96)}
+.hero{position:relative;overflow:hidden}.qt{margin:12px 0 0;font-style:italic;font-size:15px}
+.gl{width:38px;height:38px;border-radius:50%;border:0;background:rgba(255,255,255,.22);color:#fff;display:grid;place-items:center}.gl svg{width:20px;height:20px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}.g2 .card{margin:0}
+.big2{font-size:28px;font-weight:700;margin:4px 0}
+.prog2{height:6px;background:var(--line);border-radius:4px;overflow:hidden;margin-bottom:6px}.prog2 i{display:block;height:100%;background:linear-gradient(90deg,var(--a),var(--a2));border-radius:4px;animation:grow .9s}
+.nx{background:linear-gradient(135deg,rgba(155,124,255,.22),rgba(79,140,255,.16))}
+.fab{position:fixed;right:18px;bottom:calc(84px + env(safe-area-inset-bottom));width:58px;height:58px;border-radius:50%;border:0;background:linear-gradient(135deg,var(--a),var(--a2));color:#fff;display:grid;place-items:center;box-shadow:0 8px 24px rgba(79,140,255,.45);z-index:5;transition:transform .2s}
+.fab:active{transform:scale(.9) rotate(45deg)}.fab svg{width:28px;height:28px;stroke-width:2.2}
+.qb{display:flex;flex-direction:column;align-items:center;gap:8px;padding:20px 10px;color:var(--a);margin:0;font-size:15px}.qb b{color:var(--tx)}
+.toast{position:fixed;top:calc(env(safe-area-inset-top) + 10px);left:50%;transform:translateX(-50%);background:var(--sh);color:var(--tx);border:1px solid var(--line);padding:10px 18px;border-radius:20px;z-index:20;box-shadow:0 8px 24px rgba(0,0,0,.3);animation:in .3s;white-space:nowrap}
+</style>
+</head>
+<body>
+<div id="app"><div id="main"></div></div>
+<button class=fab id=fab data-a=qa aria-label="Ajout rapide"></button>
+<nav class="tabbar"><div id="tab"></div></nav>
+<script>
+const $=s=>document.querySelector(s),K='myschool.v1';
+const PAL={Lavande:['#9b7cff','#4f8cff'],Bleu:['#4f8cff','#38d0f5'],Rose:['#e58ad8','#f5a3c0'],Menthe:['#5fc9b0','#7fb2f5'],Pêche:['#f5a26a','#f08fb5']};
+const DAYS=['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
+const DEF={name:'MY SCHOOL',pal:'Lavande',dark:true,user:'',
+ subjects:[['Maths','#7c8cf8'],['Français','#e58ad8'],['Histoire-Géo','#f5a26a'],['Anglais','#5fc9b0'],['SVT','#7bc86c'],['Physique','#6aa8f7']].map(([name,color],i)=>({id:'m'+i,name,color})),
+ slots:[['08:00','09:00'],['09:00','10:00'],['10:15','11:15'],['11:15','12:15'],['14:00','15:00'],['15:00','16:00']].map(([start,end],i)=>({id:'t'+i,start,end})),
+ courses:[],hw:[],grades:[],tests:[],cards:[]};
+let D;try{D={...DEF,...JSON.parse(localStorage[K])}}catch{D=structuredClone(DEF)}
+const ui={tab:'home',sub:null,desc:false,rf:''};
+const save=()=>{try{localStorage[K]=JSON.stringify(D)}catch{}};
+if(!D.v2){D.v2=1;D.dark=true;save()}
+const toast=m=>{const t=document.createElement('div');t.className='toast';t.textContent=m;document.body.append(t);setTimeout(()=>t.remove(),1900)};
+const uid=()=>Math.random().toString(36).slice(2,9);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const sub=id=>D.subjects.find(s=>s.id==id)||{name:'(matière supprimée)',color:'#b7b3d1'};
+const pad=n=>String(n).padStart(2,'0');
+const iso=d=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+const TODAY=()=>iso(new Date());
+const fd=s=>new Date(s+'T12:00').toLocaleDateString('fr-FR',{weekday:'short',day:'numeric',month:'short'});
+const diff=s=>Math.round((new Date(s+'T12:00')-new Date(TODAY()+'T12:00'))/864e5);
+const cd=s=>{const n=diff(s);return n<0?'Passé':n==0?"Aujourd'hui":n==1?'Demain':'J-'+n};
+const wd=()=>{const d=new Date().getDay();return d>0&&d<6?d:1};
+const so=()=>D.subjects.map(s=>[s.id,s.name]);
+const upsert=(a,id,o)=>{id?Object.assign(a.find(x=>x.id==id),o):a.push({id:uid(),...o})};
+const req=(v,...k)=>k.every(x=>String(v[x]??'').trim())||(alert('Remplis les champs obligatoires'),false);
+const avg=l=>{const w=l.reduce((a,g)=>a+g.coef,0);return w?l.reduce((a,g)=>a+g.v/g.max*20*g.coef,0)/w:null};
+const f1=x=>x==null?'–':x.toFixed(1).replace('.',',');
+const P={home:'<path d="M3 11l9-8 9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/>',tt:'<path d="M3 5h18v16H3zM3 10h18M8 3v4M16 3v4"/>',hw:'<path d="M9 11l3 3 8-8M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"/>',gr:'<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>',more:'<path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/>',plus:'<path d="M12 5v14M5 12h14"/>',back:'<path d="M15 6l-6 6 6 6"/>',test:'<path d="M5 21V4M5 4h13l-2 4 2 4H5"/>',rev:'<path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2zM4 19V5"/>',set:'<path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="17" r="2"/>',ck:'<path d="M5 12l5 5 9-10"/>',search:'<path d="M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14zM21 21l-5-5"/>'};
+const ic=n=>`<svg class=i viewBox="0 0 24 24">${P[n]}</svg>`;
+const hd=(t,b='')=>`<div class="row hd"><h1>${esc(t)}</h1>${b}</div>`;
+const add=(a,i='')=>`<button class=plus data-a=${a} data-id="${i}" aria-label="Ajouter">${ic('plus')}</button>`;
+const emp=t=>`<div class=emp>${t}</div>`;
+const back=()=>`<button class=lk data-a=go data-id=more>${ic('back')}Plus</button>`;
+const pill=(t,c)=>`<span class=pill${c?` style="background:${c}22;color:${c}"`:''}>${t}</span>`;
+const it=(col,t,s,r,at)=>`<div class="card row it" ${at}><i class=st style="background:${col}"></i><div class=fl><b>${t}</b><small>${s}</small></div>${r||''}</div>`;
+const sec=(t,g)=>`<div class=sec><h3>${t}</h3><button class=lk data-a=go data-id=${g}>Voir tout</button></div>`;
+const cRow=(c,at,w)=>{const s=sub(c.sid);return it(s.color,esc(s.name),`${c.start} – ${c.end}${c.room?' · '+esc(c.room):''}`,w?pill(w):'',at)};
+const hRow=(x,at)=>{const s=sub(x.sid),late=!x.done&&diff(x.due)<0;return it(s.color,`<span class="${x.done?'dn':''}">${esc(x.title)}</span>`,`${esc(s.name)} · ${fd(x.due)}${x.desc?'<br>'+esc(x.desc):''}`,(late?pill('Retard','#e5484d'):'')+`<button class="ck ${x.done?'on':''}" data-a=tg data-id=${x.id} aria-label="Terminé">${ic('ck')}</button>`,at)};
+
+const QUOTES=["Un petit pas chaque jour mène loin.","Tu n'as pas besoin d'être parfait, juste régulier.","Commence là où tu es, avec ce que tu as.","Chaque révision te rapproche de ton objectif.","La réussite est la somme de petits efforts répétés.","Fais de ton mieux aujourd'hui, demain te remerciera.","Apprendre, c'est grandir un peu chaque jour."];
+function vHome(){
+ const n=new Date(),h=n.getHours(),nt=pad(h)+':'+pad(n.getMinutes()),nmin=h*60+n.getMinutes();
+ const cs=[];for(let o=0;o<8;o++){const d=new Date(n);d.setDate(n.getDate()+o);D.courses.filter(c=>c.day==d.getDay()&&(o||c.end>nt)).sort((a,b)=>a.start.localeCompare(b.start)).forEach(c=>cs.push({c,w:o?o==1?'Demain':DAYS[d.getDay()]:"Aujourd'hui"}))}
+ const hw=D.hw.filter(x=>!x.done).sort((a,b)=>a.due.localeCompare(b.due)).slice(0,3);
+ const t0=D.tests.filter(t=>diff(t.date)>=0).sort((a,b)=>a.date.localeCompare(b.date))[0];
+ const k=diff(iso(new Date(n.getTime()-((n.getDay()+6)%7)*864e5))),wk=D.hw.filter(x=>{const d=diff(x.due);return d>=k&&d<k+7}),wn=wk.filter(x=>x.done).length;
+ const nx=cs[0],s=nx&&sub(nx.c.sid),m=nx&&nx.w=="Aujourd'hui"?+nx.c.start.slice(0,2)*60+ +nx.c.start.slice(3)-nmin:null;
+ const lab=nx?m==null?nx.w+' · '+nx.c.start:m<=0?'En cours':'Dans '+(m>=60?Math.floor(m/60)+' h '+pad(m%60):m+' min'):'';
+ return `<div class=hero><div class=row><p class="sm fl">${n.toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long'})}</p><button class=gl data-a=sr aria-label=Rechercher>${ic('search')}</button></div>
+ <h1>${h<18?'Bonjour':'Bonsoir'}${D.user?', '+esc(D.user):''} 👋</h1><small>Bienvenue sur ${esc(D.name)}</small><p class=qt>« ${QUOTES[Math.floor(n/864e5)%QUOTES.length]} »</p></div>`
+ +(nx?`<div class="card nx it" data-a=go data-id=tt><small>Prochain cours</small><div class=row style="margin-top:6px"><i class=st style="background:${s.color};height:46px"></i><div class=fl><h2>${esc(s.name)}</h2><small>${nx.c.start} – ${nx.c.end}${nx.c.room?' · '+esc(nx.c.room):''}</small></div>${pill(lab,s.color)}</div></div>`:'<div class="card emp">Aucun cours à venir. Ajoute-les avec le bouton +</div>')
+ +`<div class=g2><div class="card it" data-a=go data-id=hw><small>Cette semaine</small><div class=big2>${wn}/${wk.length}</div><div class=prog2><i style="width:${wk.length?wn/wk.length*100:0}%"></i></div><small>${D.hw.filter(x=>x.done).length} devoirs terminés en tout</small></div>
+ <div class="card it" data-a=go data-id=test><small>Prochain contrôle</small>${t0?`<div class=big2>${cd(t0.date)}</div><small>${esc(sub(t0.sid).name)}</small>`:'<div class=big2>–</div><small>Aucun prévu</small>'}</div></div>`
+ +sec('Devoirs à terminer','hw')+(hw.length?hw.map(x=>hRow(x,'data-a=go data-id=hw')).join(''):emp('Rien à faire 🎉'));
+}
+const srch=q=>{q=q.trim().toLowerCase();if(!q)return '';const m=(...a)=>a.some(x=>String(x||'').toLowerCase().includes(q));
+ const r=[...D.subjects.filter(x=>m(x.name)).map(x=>['s',x.id,x.color,esc(x.name),'Matière · voir les fiches']),
+ ...D.hw.filter(x=>m(x.title,x.desc,sub(x.sid).name)).map(x=>['h',x.id,sub(x.sid).color,esc(x.title),'Devoir · '+fd(x.due)]),
+ ...D.tests.filter(x=>m(x.ch,x.type,sub(x.sid).name)).map(x=>['t',x.id,sub(x.sid).color,esc(sub(x.sid).name+' · '+x.type),'Contrôle · '+fd(x.date)]),
+ ...D.cards.filter(x=>m(x.title,x.body,sub(x.sid).name)).map(x=>['r',x.id,sub(x.sid).color,esc(x.title),'Fiche · '+esc(sub(x.sid).name)])];
+ return r.length?r.slice(0,30).map(([t,id,c,a,b])=>it(c,a,b,'',`data-a=sx data-t=${t} data-id=${id}`)).join(''):emp('Aucun résultat')};
+const vTT=()=>hd('Emploi du temps',`<div class=row><button class=chip data-a=imp>Importer</button>${add('ac')}</div>`)+[1,2,3,4,5].map(d=>{const l=D.courses.filter(c=>c.day==d).sort((a,b)=>a.start.localeCompare(b.start));
+ return `<div class=sec><h3 class="${new Date().getDay()==d?'td':''}">${DAYS[d]}</h3>${add('ac',d)}</div>`+(l.length?l.map(c=>cRow(c,`data-a=ec data-id=${c.id}`)).join(''):'<div class=emp style="padding:6px">Aucun cours</div>')}).join('');
+const vHW=()=>{const l=[...D.hw].sort((a,b)=>(!!a.done-!!b.done)||(ui.desc?-1:1)*a.due.localeCompare(b.due));
+ return hd('Devoirs',add('ah'))+`<button class=chip data-a=srt style="margin-bottom:12px">Trier par date ${ui.desc?'↓':'↑'}</button>`+(l.length?l.map(x=>hRow(x,`data-a=eh data-id=${x.id}`)).join(''):emp('Aucun devoir. Appuie sur + pour en ajouter.'))};
+function vGR(){
+ const per=D.subjects.map(s=>({s,l:D.grades.filter(g=>g.sid==s.id)})).filter(x=>x.l.length).map(x=>({...x,a:avg(x.l)}));
+ const all=per.length?per.reduce((a,x)=>a+x.a,0)/per.length:null;
+ return hd('Notes',add('ag'))+`<div class="card ctr"><small>Moyenne générale</small><div class=big>${f1(all)}<span>/20</span></div></div>`
+ +(per.length?`<div class=card><h3>Moyennes par matière</h3>${per.map(x=>`<div class=bl><span>${esc(x.s.name)}</span><div class=bar><i style="width:${Math.min(100,x.a/20*100)}%;background:${x.s.color}"></i></div><b>${f1(x.a)}</b></div>`).join('')}</div>`
+ +per.map(x=>`<div class=card><div class=row><b class=fl>${esc(x.s.name)}</b>${pill('Moy. '+f1(x.a),x.s.color)}</div><div class=chips>${x.l.map(g=>`<button class=chip data-a=eg data-id=${g.id}>${g.label?esc(g.label)+' : ':''}${g.v}/${g.max}${g.coef!=1?' ×'+g.coef:''}</button>`).join('')}</div></div>`).join(''):emp('Ajoute ta première note avec le bouton +'))}
+const vMore=()=>ui.sub?{test:vTest,rev:vRev,set:vSet}[ui.sub]():hd('Plus')+[['test','Contrôles'],['rev','Révisions'],['set','Réglages']].map(([k,l])=>`<div class="card row it" data-a=go data-id=${k}><span class=ico>${ic(k)}</span><b class=fl>${l}</b><span style="color:var(--mut)">›</span></div>`).join('');
+const vTest=()=>back()+hd('Contrôles',add('at'))+(D.tests.length?[...D.tests].sort((a,b)=>a.date.localeCompare(b.date)).map(t=>{const s=sub(t.sid),n=diff(t.date);
+ return `<div style="${n<0?'opacity:.5':''}">`+it(s.color,`${esc(s.name)} · ${esc(t.type)}`,`${fd(t.date)}${t.ch?'<br>'+esc(t.ch):''}`,pill(cd(t.date),n<0?'':n<=2?'#e5484d':PAL[D.pal][0]),`data-a=et data-id=${t.id}`)+'</div>'}).join(''):emp('Aucun contrôle prévu'));
+const vRev=()=>{const l=D.cards.filter(c=>!ui.rf||c.sid==ui.rf);
+ return back()+hd('Révisions',add('ar'))+`<div class=chips style="margin:0 0 12px"><button class="chip ${ui.rf?'':'on'}" data-a=rf data-id="">Toutes</button>${D.subjects.map(s=>`<button class="chip ${ui.rf==s.id?'on':''}" data-a=rf data-id=${s.id}>${esc(s.name)}</button>`).join('')}</div>`
+ +(l.length?l.map(c=>{const s=sub(c.sid);return it(s.color,esc(c.title),`${esc(s.name)} · ${esc((c.body||'').slice(0,70))}`,'',`data-a=er data-id=${c.id}`)}).join(''):emp('Crée ta première fiche de révision'))};
+const vSet=()=>back()+hd('Réglages')+`<div class=card><label style="margin-top:0">Prénom<input id=un value="${esc(D.user)}" maxlength=20></label><label>Nom de l'application<input id=nm value="${esc(D.name)}" maxlength=24></label>
+ <label>Couleurs</label><div class=sw>${Object.entries(PAL).map(([k,[a,b]])=>`<button class="swb ${D.pal==k?'on':''}" data-a=pal data-id="${k}" aria-label="${k}" style="background:linear-gradient(135deg,${a},${b})"></button>`).join('')}</div>
+ <div class=row style="margin-top:16px"><b class=fl>Mode sombre</b><button class="tgl ${D.dark?'on':''}" data-a=dk aria-label="Mode sombre"><i></i></button></div></div>
+ <div class=sec><h3>Matières</h3>${add('as')}</div>${D.subjects.map(s=>it(s.color,esc(s.name),'','',`data-a=es data-id=${s.id}`)).join('')}
+ <div class=sec><h3>Horaires des cours</h3>${add('al')}</div>${D.slots.map(s=>it(PAL[D.pal][0],`${s.start} – ${s.end}`,'','',`data-a=el data-id=${s.id}`)).join('')}
+ <div class=sec><h3>Sauvegarde</h3></div><div class=card><small style="margin-bottom:10px">Exporte toutes tes données dans un fichier, ou restaure une sauvegarde.</small><div class=row><button class=btn data-a=bk style="flex:1">Sauvegarder</button><button class=btn data-a=rest style="flex:1;background:var(--line);color:var(--tx)">Restaurer</button></div><input type=file id=rst accept=".json,application/json" hidden></div>
+ <button class="btn r" data-a=rs style="width:100%;margin-top:20px">Réinitialiser les données</button>`;
+
+function sheet(t,f,ok,del,ex=''){const o=document.createElement('div');o.className='ov';
+ o.innerHTML=`<div class=sh><div class="row hd"><h2>${t}</h2><button class=chip data-a=close>Fermer</button></div>${f.map(x=>`<label>${x.l}${x.t=='select'?`<select name=${x.k}>${x.o.map(([v,n])=>`<option value="${esc(v)}"${v==x.v?' selected':''}>${esc(n)}</option>`).join('')}</select>`:x.t=='area'?`<textarea name=${x.k} rows=${x.r||4}>${esc(x.v)}</textarea>`:`<input name=${x.k} type=${x.t||'text'} value="${esc(x.v)}" ${x.x||''}>`}</label>`).join('')}${ex}<div class=row style="margin-top:18px"><button class=btn data-a=ok style="flex:1">Enregistrer</button>${del?'<button class="btn r" data-a=del>Supprimer</button>':''}</div></div>`;
+ o.save=()=>{const v={};o.querySelectorAll('[name]').forEach(e=>v[e.name]=e.value);if(ok(v)!==false){o.remove();save();render();toast('Enregistré ✓')}};
+ o.del=()=>{if(confirm('Supprimer définitivement ?')){del();o.remove();save();render();toast('Supprimé')}};
+ document.body.append(o)}
+const fC=c=>sheet(c.id?'Modifier le cours':'Nouveau cours',[
+ {k:'sid',l:'Matière',t:'select',o:so(),v:c.sid||D.subjects[0]?.id},{k:'day',l:'Jour',t:'select',o:[1,2,3,4,5].map(d=>[d,DAYS[d]]),v:c.day},
+ {k:'start',l:'Début',t:'time',v:c.start||'08:00'},{k:'end',l:'Fin',t:'time',v:c.end||'09:00'},{k:'room',l:'Salle (facultatif)',v:c.room}],
+ v=>req(v,'sid','start','end')&&(v.end>v.start||(alert('La fin doit être après le début'),false))&&(upsert(D.courses,c.id,{sid:v.sid,day:+v.day,start:v.start,end:v.end,room:v.room.trim()}),1),
+ c.id&&(()=>D.courses=D.courses.filter(x=>x.id!=c.id)),
+ `<label>Créneaux rapides</label><div class=chips>${D.slots.map(s=>`<button class=chip data-a=slot data-s=${s.start} data-e=${s.end}>${s.start}–${s.end}</button>`).join('')}</div>`);
+const fH=x=>sheet(x.id?'Modifier le devoir':'Nouveau devoir',[
+ {k:'sid',l:'Matière',t:'select',o:so(),v:x.sid||D.subjects[0]?.id},{k:'title',l:'Titre',v:x.title},{k:'desc',l:'Description',t:'area',v:x.desc},{k:'due',l:'Date limite',t:'date',v:x.due||TODAY()}],
+ v=>req(v,'sid','title','due')&&(upsert(D.hw,x.id,{sid:v.sid,title:v.title.trim(),desc:v.desc.trim(),due:v.due,done:!!x.done}),1),
+ x.id&&(()=>D.hw=D.hw.filter(h=>h.id!=x.id)));
+const fG=g=>sheet(g.id?'Modifier la note':'Nouvelle note',[
+ {k:'sid',l:'Matière',t:'select',o:so(),v:g.sid||D.subjects[0]?.id},{k:'label',l:'Intitulé (facultatif)',v:g.label},
+ {k:'v',l:'Note',t:'number',v:g.v,x:'step=any inputmode=decimal'},{k:'max',l:'Sur',t:'number',v:g.max||20,x:'step=any inputmode=decimal'},{k:'coef',l:'Coefficient',t:'number',v:g.coef||1,x:'step=any inputmode=decimal'}],
+ v=>req(v,'sid','v','max','coef')&&(+v.max>0&&+v.coef>0&&+v.v>=0&&+v.v<=+v.max||(alert('Vérifie la note, le barème et le coefficient'),false))&&(upsert(D.grades,g.id,{sid:v.sid,label:v.label.trim(),v:+v.v,max:+v.max,coef:+v.coef}),1),
+ g.id&&(()=>D.grades=D.grades.filter(x=>x.id!=g.id)));
+const fT=t=>sheet(t.id?'Modifier le contrôle':'Nouveau contrôle',[
+ {k:'sid',l:'Matière',t:'select',o:so(),v:t.sid||D.subjects[0]?.id},{k:'type',l:'Type',t:'select',o:['Interrogation','Contrôle','Examen'].map(x=>[x,x]),v:t.type},
+ {k:'date',l:'Date',t:'date',v:t.date||TODAY()},{k:'ch',l:'Chapitres à étudier',t:'area',v:t.ch}],
+ v=>req(v,'sid','date')&&(upsert(D.tests,t.id,{sid:v.sid,type:v.type,date:v.date,ch:v.ch.trim()}),1),
+ t.id&&(()=>D.tests=D.tests.filter(x=>x.id!=t.id)));
+const fR=r=>sheet(r.id?'Modifier la fiche':'Nouvelle fiche',[
+ {k:'sid',l:'Matière',t:'select',o:so(),v:r.sid||ui.rf||D.subjects[0]?.id},{k:'title',l:'Titre',v:r.title},{k:'body',l:'Contenu',t:'area',r:9,v:r.body}],
+ v=>req(v,'sid','title')&&(upsert(D.cards,r.id,{sid:v.sid,title:v.title.trim(),body:v.body}),1),
+ r.id&&(()=>D.cards=D.cards.filter(x=>x.id!=r.id)));
+const fS=s=>sheet(s.id?'Modifier la matière':'Nouvelle matière',[{k:'name',l:'Nom',v:s.name},{k:'color',l:'Couleur',t:'color',v:s.color||['#7c8cf8','#e58ad8','#f5a26a','#5fc9b0','#7bc86c','#6aa8f7'][D.subjects.length%6]}],
+ v=>req(v,'name')&&(upsert(D.subjects,s.id,{name:v.name.trim(),color:v.color}),1),
+ s.id&&(()=>{D.subjects=D.subjects.filter(x=>x.id!=s.id);['courses','hw','grades','tests','cards'].forEach(k=>D[k]=D[k].filter(x=>x.sid!=s.id))}));
+const fL=s=>sheet(s.id?'Modifier l\'horaire':'Nouvel horaire',[{k:'start',l:'Début',t:'time',v:s.start||'08:00'},{k:'end',l:'Fin',t:'time',v:s.end||'09:00'}],
+ v=>req(v,'start','end')&&(v.end>v.start||(alert('La fin doit être après le début'),false))&&(upsert(D.slots,s.id,{start:v.start,end:v.end}),D.slots.sort((a,b)=>a.start.localeCompare(b.start)),1),
+ s.id&&(()=>D.slots=D.slots.filter(x=>x.id!=s.id)));
+const fI=()=>sheet('Importer un emploi du temps',[{k:'mode',l:'Mode',t:'select',o:[['add','Ajouter aux cours existants'],['rep','Remplacer tous les cours']],v:'add'},{k:'code',l:'Colle ici le code donné par Claude',t:'area',r:8}],
+ v=>{let l;try{l=JSON.parse(v.code.trim().replace(/^```(json)?|```$/g,'').trim()).cours}catch{}
+ if(!Array.isArray(l)||!l.length)return alert('Code non reconnu. Colle le code complet.'),false;
+ const cols=['#7c8cf8','#e58ad8','#f5a26a','#5fc9b0','#7bc86c','#6aa8f7','#f08fb5','#8fd0f5'];
+ if(v.mode=='rep')D.courses=[];
+ l.forEach(c=>{const n=String(c.m||'').trim();if(!n||!(c.j>=1&&c.j<=5)||!c.d||!c.f)return;
+  let s=D.subjects.find(x=>x.name.toLowerCase()==n.toLowerCase());if(!s){s={id:uid(),name:n,color:cols[D.subjects.length%8]};D.subjects.push(s)}
+  D.courses.push({id:uid(),sid:s.id,day:+c.j,start:c.d,end:c.f,room:String(c.s||'')})})});
+const g=(a,id)=>a.find(x=>x.id==id);
+const A={
+ close:(_,e)=>e.closest('.ov').remove(),ok:(_,e)=>e.closest('.ov').save(),del:(_,e)=>e.closest('.ov').del(),
+ slot:(_,e)=>{const o=e.closest('.ov');o.querySelector('[name=start]').value=e.dataset.s;o.querySelector('[name=end]').value=e.dataset.e},
+ go(id){if(['home','tt','hw','gr','more'].includes(id)){ui.tab=id;ui.sub=null}else{ui.tab='more';ui.sub=id}render();scrollTo(0,0)},
+ tg(id){const x=g(D.hw,id);x.done=!x.done;save();render()},srt(){ui.desc=!ui.desc;render()},rf(id){ui.rf=id;render()},
+ pal(id){D.pal=id;save();render()},dk(){D.dark=!D.dark;save();render()},
+ rs(){if(confirm('Effacer toutes tes données ?')){D=structuredClone(DEF);save();render()}},
+ imp:()=>fI(),ac:id=>fC({day:+id||wd()}),ec:id=>fC(g(D.courses,id)),ah:()=>fH({}),eh:id=>fH(g(D.hw,id)),ag:()=>fG({}),eg:id=>fG(g(D.grades,id)),
+ at:()=>fT({}),et:id=>fT(g(D.tests,id)),ar:()=>fR({}),er:id=>fR(g(D.cards,id)),as:()=>fS({}),es:id=>fS(g(D.subjects,id)),al:()=>fL({}),el:id=>fL(g(D.slots,id))};
+const qk=f=>(_,e)=>{e.closest('.ov').remove();f()};
+Object.assign(A,{
+ tg(id){const x=g(D.hw,id);x.done=!x.done;save();render();toast(x.done?'Devoir terminé ✓':'Remis à faire')},
+ qa(){const o=document.createElement('div');o.className='ov';o.innerHTML=`<div class=sh><div class="row hd"><h2>Ajout rapide</h2><button class=chip data-a=close>Fermer</button></div><div class=g2>${[['qh','Devoir','hw'],['qc','Cours','tt'],['qg','Note','gr'],['qt','Contrôle','test']].map(([a,l,i])=>`<button class="card qb" data-a=${a}>${ic(i)}<b>${l}</b></button>`).join('')}</div></div>`;document.body.append(o)},
+ qh:qk(()=>fH({})),qc:qk(()=>fC({day:wd()})),qg:qk(()=>fG({})),qt:qk(()=>fT({})),
+ sr(){const o=document.createElement('div');o.className='ov';o.innerHTML=`<div class=sh style="min-height:70dvh"><div class="row hd"><h2>Recherche</h2><button class=chip data-a=close>Fermer</button></div><input id=q placeholder="Matière, devoir, contrôle, fiche…" autocomplete=off><div id=qr style="margin-top:14px"></div></div>`;document.body.append(o);o.querySelector('#q').focus()},
+ sx(id,e){e.closest('.ov').remove();({h:()=>fH(g(D.hw,id)),t:()=>fT(g(D.tests,id)),r:()=>fR(g(D.cards,id)),s:()=>{ui.rf=id;A.go('rev')}})[e.dataset.t]()},
+ async bk(){const f=new File([JSON.stringify(D,null,1)],'myschool-sauvegarde-'+TODAY()+'.json',{type:'application/json'});
+  try{if(navigator.canShare?.({files:[f]})){await navigator.share({files:[f]});toast('Sauvegarde prête ✓');return}}catch(e){if(e.name=='AbortError')return}
+  const a=document.createElement('a');a.href=URL.createObjectURL(f);a.download=f.name;a.click();toast('Sauvegarde téléchargée ✓')},
+ rest(){$('#rst').click()}});
+document.addEventListener('click',e=>{const el=e.target.closest('[data-a]');if(el)A[el.dataset.a]?.(el.dataset.id,el);else if(e.target.classList.contains('ov'))e.target.remove()});
+document.addEventListener('change',e=>{const t=e.target;
+ if(t.id=='nm'){D.name=t.value.trim()||'MY SCHOOL';save();document.title=D.name}
+ if(t.id=='un'){D.user=t.value.trim();save()}
+ if(t.id=='rst'&&t.files[0]){t.files[0].text().then(x=>{try{const o=JSON.parse(x);if(!Array.isArray(o.subjects))throw 0;if(confirm('Remplacer toutes les données actuelles par cette sauvegarde ?')){D={...DEF,...o};save();render();toast('Données restaurées ✓')}}catch{alert('Fichier de sauvegarde invalide')}});t.value=''}});
+document.addEventListener('input',e=>{if(e.target.id=='q')$('#qr').innerHTML=srch(e.target.value)});
+function render(){const[a,b]=PAL[D.pal]||PAL.Lavande,r=document.documentElement;
+ r.dataset.theme=D.dark?'dark':'light';r.style.setProperty('--a',a);r.style.setProperty('--a2',b);
+ $('meta[name=theme-color]').content=D.dark?'#070b1f':'#eef0fb';document.title=D.name;
+ $('#main').innerHTML=`<div class=view>${({home:vHome,tt:vTT,hw:vHW,gr:vGR,more:vMore})[ui.tab]()}</div>`;
+ document.querySelectorAll('#tab button').forEach(x=>x.classList.toggle('on',x.dataset.id==ui.tab))}
+$('#tab').innerHTML=[['home','Accueil'],['tt','Cours'],['hw','Devoirs'],['gr','Notes'],['more','Plus']].map(([k,l])=>`<button data-a=go data-id=${k}>${ic(k)}<span>${l}</span></button>`).join('');
+$('#fab').innerHTML=ic('plus');render();
+if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
+</script>
+</body>
+</html>
